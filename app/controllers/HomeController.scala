@@ -5,8 +5,7 @@ import javax.inject._
 import com.typesafe.scalalogging.LazyLogging
 import play.api.mvc._
 
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 
 /**
@@ -14,7 +13,9 @@ import scala.concurrent.Future
   * application's home page.
   */
 @Singleton
-class HomeController @Inject() extends Controller with LazyLogging {
+class HomeController @Inject() (
+  implicit ec: ExecutionContext
+) extends Controller with LazyLogging {
 
   /**
     * Create an Action to render an HTML page with a welcome message.
